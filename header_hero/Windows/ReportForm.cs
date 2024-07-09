@@ -33,7 +33,7 @@ namespace HeaderHero
             _project = project;
             _scanner = scanner;
             _analytics = Parser.Analytics.Analyze(_project);
-            
+
             errorsListView.Items.Clear();
             foreach (string s in scanner.Errors)
                 errorsListView.Items.Add(s);
@@ -51,6 +51,26 @@ namespace HeaderHero
             else
                 reportBrowser.Navigate(file);
             reportBrowser.Navigating += reportBrowser_Navigating;
+            makeTree();
+        }
+
+        private void makeTree()
+        {
+            treeView.BeginUpdate();
+            treeView.Nodes.Add("Parent test");
+            treeView.Nodes[0].Nodes.Add("Child 1");
+            treeView.Nodes[0].Nodes.Add("Child 2");
+            treeView.Nodes[0].Nodes[1].Nodes.Add("Grandchild 1");
+            treeView.Nodes[0].Nodes[1].Nodes.Add("Grandchild 2");
+            treeView.Nodes[0].Nodes[1].Nodes[0].Nodes.Add("Great Grandchild");
+            treeView.EndUpdate();
+
+            treeView.BeginUpdate();
+            for (int i = 0; i < _project.Files.Count; i++)
+            {
+                treeView.Nodes[0].Nodes.Add(_project.Files.ElementAt(i).Key);
+            }
+            treeView.EndUpdate();
         }
 
         void includedByListView_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -95,6 +115,7 @@ namespace HeaderHero
                     ListViewItem item = new ListViewItem(new[] { Path.GetFileName(s), _analytics.Items[s].AllIncludes.Count.ToString(), _analytics.Items[s].TotalIncludeLines.ToString()});
                     item.Tag = s;
                     includesListView.Items.Add(item);
+
                 }
             }
 
