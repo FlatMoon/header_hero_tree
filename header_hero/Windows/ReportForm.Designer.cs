@@ -30,6 +30,7 @@
         {
             this.tabPages = new System.Windows.Forms.TabControl();
             this.reportTab = new System.Windows.Forms.TabPage();
+            this.treeView = new System.Windows.Forms.TreeView();
             this.reportBrowser = new System.Windows.Forms.WebBrowser();
             this.includeTab = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -55,7 +56,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.scanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rescanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.treeView = new System.Windows.Forms.TreeView();
             this.tabPages.SuspendLayout();
             this.reportTab.SuspendLayout();
             this.includeTab.SuspendLayout();
@@ -63,6 +63,7 @@
             this.fileColHeader.SuspendLayout();
             this.errorsTab.SuspendLayout();
             this.missingTab.SuspendLayout();
+            this.treeTab.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,7 +84,6 @@
             // 
             // reportTab
             // 
-            this.reportTab.Controls.Add(this.treeView);
             this.reportTab.Controls.Add(this.reportBrowser);
             this.reportTab.Location = new System.Drawing.Point(4, 25);
             this.reportTab.Margin = new System.Windows.Forms.Padding(4);
@@ -93,6 +93,13 @@
             this.reportTab.TabIndex = 0;
             this.reportTab.Text = "Report";
             this.reportTab.UseVisualStyleBackColor = true;
+            // 
+            // treeView
+            // 
+            this.treeView.Location = new System.Drawing.Point(2, 1);
+            this.treeView.Name = "treeView";
+            this.treeView.Size = new System.Drawing.Size(1223, 787);
+            this.treeView.TabIndex = 1;
             // 
             // reportBrowser
             // 
@@ -321,8 +328,8 @@
             // 
             // treeTab
             // 
-            this.treeTab.Location = new System.Drawing.Point(4, 25);
             this.treeTab.Controls.Add(this.treeView);
+            this.treeTab.Location = new System.Drawing.Point(4, 25);
             this.treeTab.Name = "treeTab";
             this.treeTab.Size = new System.Drawing.Size(1226, 789);
             this.treeTab.TabIndex = 4;
@@ -356,13 +363,6 @@
             this.rescanToolStripMenuItem.Text = "Rescan";
             this.rescanToolStripMenuItem.Click += new System.EventHandler(this.rescanToolStripMenuItem_Click);
             // 
-            // treeView
-            // 
-            this.treeView.Location = new System.Drawing.Point(2, 1);
-            this.treeView.Name = "treeView";
-            this.treeView.Size = new System.Drawing.Size(1223, 787);
-            this.treeView.TabIndex = 1;
-            // 
             // ReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -383,6 +383,7 @@
             this.fileColHeader.PerformLayout();
             this.errorsTab.ResumeLayout(false);
             this.missingTab.ResumeLayout(false);
+            this.treeTab.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

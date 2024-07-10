@@ -5,6 +5,9 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
+using System.IO.Ports;
+using System.Linq.Expressions;
+using System.Xml.Linq;
 
 namespace HeaderHero
 {
@@ -53,25 +56,25 @@ namespace HeaderHero
             reportBrowser.Navigating += reportBrowser_Navigating;
             makeTree();
         }
-
+        bool allAdded = false;
+        TreeNode currentNode = null;
         private void makeTree()
         {
-            treeView.BeginUpdate();
-            treeView.Nodes.Add("Parent test");
-            treeView.Nodes[0].Nodes.Add("Child 1");
-            treeView.Nodes[0].Nodes.Add("Child 2");
-            treeView.Nodes[0].Nodes[1].Nodes.Add("Grandchild 1");
-            treeView.Nodes[0].Nodes[1].Nodes.Add("Grandchild 2");
-            treeView.Nodes[0].Nodes[1].Nodes[0].Nodes.Add("Great Grandchild");
-            treeView.EndUpdate();
+            string nextFile = "c:\\git\\grpc\\src\\compiler\\objective_c_generator.cc";
+            TreeNode rootNode = treeView.Nodes.Add("Root");
+            rootNode.Tag = "Root Node Tag!";
+            currentNode = treeView.Nodes[0].Nodes.Add(nextFile);
+            currentNode.Tag = "c:\\git\\grpc\\src\\compiler\\objective_c_generator.cc";
+            Inspect(nextFile);
 
-            treeView.BeginUpdate();
-            for (int i = 0; i < _project.Files.Count; i++)
+            while (allDone == false) //Needs attention
             {
-                treeView.Nodes[0].Nodes.Add(_project.Files.ElementAt(i).Key);
+                nextFile = TreeInspect(nextFile);
+
             }
-            treeView.EndUpdate();
-        }
+                
+
+        } 
 
         void includedByListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -86,6 +89,98 @@ namespace HeaderHero
         private string _inspecting;
         private LinkedList<string> _history = new LinkedList<string>();
 
+        private string TreeInspect(string file)
+        {
+            _inspecting = file;
+            if (_history.Count == 0 || _history.Last() != file)
+            {
+                _history.AddLast(file);
+                if (_history.Count > 10)
+                    _history.RemoveFirst();
+            }
+
+            {
+                var projectFile = _project.Files[file];
+                var analyticsFile = _analytics.Items[file];
+                var fileLines = projectFile.Lines;
+                var directLines = projectFile.AbsoluteIncludes.Sum(f => _project.Files[f].Lines);
+                var directCount = projectFile.AbsoluteIncludes.Count;
+                var totalLines = analyticsFile.TotalIncludeLines;
+                var totalCount = analyticsFile.AllIncludes.Count;
+                string text = $"{Path.GetFileName(file)}\r\n\r\nLines: {fileLines}\r\nDirect Includes: {directLines} lines, {directCount} files\r\nTotal Includes: {totalLines} lines, {totalCount} files";
+                fileListText.Text = text;
+            }
+
+            // Start of algorithm
+            allAdded = true;
+            Console.WriteLine("inspecting " + file);
+            // Iterate through each file that it includes
+            foreach (string s in _project.Files[file].AbsoluteIncludes.OrderByDescending(f => _analytics.Items[f].AllIncludes.Count))
+            {
+                bool alreadyExists = false;
+                foreach (TreeNode checknode in currentNode.Nodes) //LIST OF ALL NODES NEEDED TO SEARCH PROPERLY
+                {
+                    if (checknode.Tag.ToString() == s)
+                    {
+                        Console.WriteLine(checknode.Tag.ToString() + " is the same as " + s);
+                        alreadyExists = true;
+                    }
+                }
+                if (!alreadyExists)
+                {
+                    TreeNode newNode = currentNode.Nodes.Add(Path.GetFileName(s));
+                    newNode.Tag = s;
+
+                    allAdded = false;
+                }
+            }
+            if (allAdded)
+            {
+                allAdded = false;
+                Console.WriteLine("Parent! " + currentNode.Parent.ToString());
+                currentNode.Nodes.Add("Debug: End of Chain");
+                currentNode = currentNode.Parent;
+                return currentNode.Tag.ToString();
+            }
+            else
+                try
+                {
+                    foreach (TreeNode checknode in currentNode.Nodes) // Go through each subnode
+                    {
+                        if (checknode.Nodes.Count > 0)
+                        {
+                            foreach (TreeNode checknode2 in checknode.Nodes)
+                            {
+                                if (checknode2.Name != "Debug: End of Chain")
+                                {
+                                    currentNode = checknode;
+                                    return currentNode.Tag.ToString();
+                                }
+                                else
+                                {
+
+                                }
+                            }
+                        }
+                        else
+                        {
+                            currentNode = checknode;
+                            return currentNode.Tag.ToString();
+                        }
+                        
+                    }
+                    Console.WriteLine("This should not be able to run!" + currentNode.Parent.ToString());
+                    currentNode = currentNode.Nodes[0];
+                    return currentNode.Tag.ToString();
+                }
+                catch
+                {
+                    Console.WriteLine("Parent! " + currentNode.Parent.ToString());
+                    currentNode = currentNode.Parent;
+                    return currentNode.Tag.ToString();
+                }
+
+        }
         private void Inspect(string file)
         {
             _inspecting = file;
@@ -115,7 +210,6 @@ namespace HeaderHero
                     ListViewItem item = new ListViewItem(new[] { Path.GetFileName(s), _analytics.Items[s].AllIncludes.Count.ToString(), _analytics.Items[s].TotalIncludeLines.ToString()});
                     item.Tag = s;
                     includesListView.Items.Add(item);
-
                 }
             }
 
