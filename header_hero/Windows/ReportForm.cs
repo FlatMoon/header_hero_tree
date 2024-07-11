@@ -59,14 +59,17 @@ namespace HeaderHero
         TreeNode currentNode = null;
         private void makeTree()
         {
-            string nextFile = "c:\\git\\grpc\\src\\compiler\\objective_c_generator.cc";
+            string nextFile = "c:\\git\\grpc\\src\\compiler\\config.h";
+
+;
             TreeNode rootNode = treeView.Nodes.Add("Root");
             rootNode.Tag = "RootTag";
             currentNode = treeView.Nodes[0].Nodes.Add(nextFile);
-            currentNode.Tag = "c:\\git\\grpc\\src\\compiler\\objective_c_generator.cc";
+            currentNode.Tag = "c:\\git\\grpc\\src\\compiler\\config.h";
+;
             Inspect(nextFile);
 
-            for (int i = 0; i < 50000; i++) 
+            while (currentNode.Tag.ToString() != "RootTag") 
             {
                 nextFile = TreeInspect(nextFile);
             }
@@ -138,7 +141,8 @@ namespace HeaderHero
             if (_project.Files[file].AbsoluteIncludes.Count > 0 && endOfChain(currentNode) == false)
             {
                 // Iterate through each file that it includes
-                foreach (string s in _project.Files[file].AbsoluteIncludes.OrderByDescending(f => _analytics.Items[f].AllIncludes.Count))
+                IEnumerable<string> included = _project.Files.Where(kvp => kvp.Value.AbsoluteIncludes.Contains(file)).Select(kvp => kvp.Key);
+                foreach (string s in included.OrderByDescending(s => _analytics.Items[s].AllIncludedBy.Count))
                 {
                     if (nodeExists(currentNode, s) == false)
                     {
