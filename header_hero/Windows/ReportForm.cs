@@ -5,9 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
-using System.IO.Ports;
-using System.Linq.Expressions;
-using System.Xml.Linq;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace HeaderHero
 {
@@ -54,18 +52,30 @@ namespace HeaderHero
             else
                 reportBrowser.Navigate(file);
             reportBrowser.Navigating += reportBrowser_Navigating;
-            makeTree();
+
+            List<string> dataSource = new List<string>();
+            foreach (string s in _project.Files.Keys.ToList())
+            {
+                if (s.EndsWith(".h"))
+                {
+                    dataSource.Add(s);
+                }
+            }
+            Console.WriteLine(dataSource);
+            treeComboBox.DataSource = dataSource;
         }
         TreeNode currentNode = null;
-        private void makeTree()
+
+        private void makeTree(string startingFile)
         {
-            string nextFile = "c:\\git\\grpc\\src\\compiler\\config.h";
+            string nextFile = startingFile;
+            treeView.Nodes.Clear();
 
 ;
             TreeNode rootNode = treeView.Nodes.Add("Root");
             rootNode.Tag = "RootTag";
             currentNode = treeView.Nodes[0].Nodes.Add(nextFile);
-            currentNode.Tag = "c:\\git\\grpc\\src\\compiler\\config.h";
+            currentNode.Tag = startingFile;
 ;
             Inspect(nextFile);
 
@@ -73,6 +83,7 @@ namespace HeaderHero
             {
                 nextFile = TreeInspect(nextFile);
             }
+            
 
         } 
 
@@ -135,38 +146,43 @@ namespace HeaderHero
                 fileListText.Text = text;
             }
 
+
             // Start of algorithm
             Console.WriteLine("inspecting " + file);
 
-            if (_project.Files[file].AbsoluteIncludes.Count > 0 && endOfChain(currentNode) == false)
+            // If there are possible child nodes and the chain has not already been created
+            if (_project.Files[file].AbsoluteIncludes.Count > 0 && !endOfChain(currentNode))
             {
-                // Iterate through each file that it includes
+                // Iterate through each file that the header file is included by.
                 IEnumerable<string> included = _project.Files.Where(kvp => kvp.Value.AbsoluteIncludes.Contains(file)).Select(kvp => kvp.Key);
                 foreach (string s in included.OrderByDescending(s => _analytics.Items[s].AllIncludedBy.Count))
                 {
-                    if (nodeExists(currentNode, s) == false)
+                    // If the node's parent is the same as its child, and the node is the same as its grandparent, end the chain.
+                    if (currentNode.Parent.Tag.ToString() == s && currentNode.Tag.ToString() == currentNode.Parent.Parent.Tag.ToString())
+                    {
+                        currentNode.Nodes.Add(" ");
+                        currentNode = currentNode.Parent;
+                        return currentNode.Tag.ToString();
+                    }
+                    // If the node hasn't been made yet, make it.
+                    if (!nodeExists(currentNode, s))
                     {
                         currentNode = currentNode.Nodes.Add(Path.GetFileName(s));
                         currentNode.Tag = s;
                         return currentNode.Tag.ToString();
                     }
                 }
-
-                
+                // If the nodes have already been created, add the empty space node to mark it as done, and move to its parent node.
                 currentNode.Nodes.Add(" ");
                 currentNode = currentNode.Parent;
                 return currentNode.Tag.ToString();
-                
             }
+            // If there are no possible child nodes or the chain has already been created, move to its parent node.
             else
             {
                 currentNode = currentNode.Parent;
                 return currentNode.Tag.ToString();
-            }
-
-                
-            
-
+            }      
         }
         private void Inspect(string file)
         {
@@ -245,6 +261,20 @@ namespace HeaderHero
                 _history.RemoveLast();
             if (_history.Count > 0)
                 Inspect(_history.Last());
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            treeView.BeginUpdate();
+            makeTree(treeComboBox.SelectedValue.ToString());
+            treeView.EndUpdate();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            treeView.BeginUpdate();
+            treeView.ExpandAll();
+            treeView.EndUpdate();
         }
     }
 }
