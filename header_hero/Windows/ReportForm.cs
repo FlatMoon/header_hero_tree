@@ -56,23 +56,20 @@ namespace HeaderHero
             reportBrowser.Navigating += reportBrowser_Navigating;
             makeTree();
         }
-        bool allAdded = false;
         TreeNode currentNode = null;
         private void makeTree()
         {
             string nextFile = "c:\\git\\grpc\\src\\compiler\\objective_c_generator.cc";
             TreeNode rootNode = treeView.Nodes.Add("Root");
-            rootNode.Tag = "Root Node Tag!";
+            rootNode.Tag = "RootTag";
             currentNode = treeView.Nodes[0].Nodes.Add(nextFile);
             currentNode.Tag = "c:\\git\\grpc\\src\\compiler\\objective_c_generator.cc";
             Inspect(nextFile);
 
-            while (allDone == false) //Needs attention
+            for (int i = 0; i < 50000; i++) 
             {
                 nextFile = TreeInspect(nextFile);
-
             }
-                
 
         } 
 
@@ -88,6 +85,30 @@ namespace HeaderHero
 
         private string _inspecting;
         private LinkedList<string> _history = new LinkedList<string>();
+
+        private bool endOfChain(TreeNode curNode)
+        {
+            foreach (TreeNode checknode in  curNode.Nodes)
+            {
+                if (checknode.Name == " ")
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool nodeExists(TreeNode curNode, string checkstring)
+        {
+            foreach (TreeNode checknode2 in curNode.Nodes)
+            {
+                if (checkstring == checknode2.Tag.ToString())
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         private string TreeInspect(string file)
         {
@@ -112,73 +133,35 @@ namespace HeaderHero
             }
 
             // Start of algorithm
-            allAdded = true;
             Console.WriteLine("inspecting " + file);
-            // Iterate through each file that it includes
-            foreach (string s in _project.Files[file].AbsoluteIncludes.OrderByDescending(f => _analytics.Items[f].AllIncludes.Count))
+
+            if (_project.Files[file].AbsoluteIncludes.Count > 0 && endOfChain(currentNode) == false)
             {
-                bool alreadyExists = false;
-                foreach (TreeNode checknode in currentNode.Nodes) //LIST OF ALL NODES NEEDED TO SEARCH PROPERLY
+                // Iterate through each file that it includes
+                foreach (string s in _project.Files[file].AbsoluteIncludes.OrderByDescending(f => _analytics.Items[f].AllIncludes.Count))
                 {
-                    if (checknode.Tag.ToString() == s)
+                    if (nodeExists(currentNode, s) == false)
                     {
-                        Console.WriteLine(checknode.Tag.ToString() + " is the same as " + s);
-                        alreadyExists = true;
+                        currentNode = currentNode.Nodes.Add(Path.GetFileName(s));
+                        currentNode.Tag = s;
+                        return currentNode.Tag.ToString();
                     }
                 }
-                if (!alreadyExists)
-                {
-                    TreeNode newNode = currentNode.Nodes.Add(Path.GetFileName(s));
-                    newNode.Tag = s;
 
-                    allAdded = false;
-                }
+                
+                currentNode.Nodes.Add(" ");
+                currentNode = currentNode.Parent;
+                return currentNode.Tag.ToString();
+                
             }
-            if (allAdded)
+            else
             {
-                allAdded = false;
-                Console.WriteLine("Parent! " + currentNode.Parent.ToString());
-                currentNode.Nodes.Add("Debug: End of Chain");
                 currentNode = currentNode.Parent;
                 return currentNode.Tag.ToString();
             }
-            else
-                try
-                {
-                    foreach (TreeNode checknode in currentNode.Nodes) // Go through each subnode
-                    {
-                        if (checknode.Nodes.Count > 0)
-                        {
-                            foreach (TreeNode checknode2 in checknode.Nodes)
-                            {
-                                if (checknode2.Name != "Debug: End of Chain")
-                                {
-                                    currentNode = checknode;
-                                    return currentNode.Tag.ToString();
-                                }
-                                else
-                                {
 
-                                }
-                            }
-                        }
-                        else
-                        {
-                            currentNode = checknode;
-                            return currentNode.Tag.ToString();
-                        }
-                        
-                    }
-                    Console.WriteLine("This should not be able to run!" + currentNode.Parent.ToString());
-                    currentNode = currentNode.Nodes[0];
-                    return currentNode.Tag.ToString();
-                }
-                catch
-                {
-                    Console.WriteLine("Parent! " + currentNode.Parent.ToString());
-                    currentNode = currentNode.Parent;
-                    return currentNode.Tag.ToString();
-                }
+                
+            
 
         }
         private void Inspect(string file)
