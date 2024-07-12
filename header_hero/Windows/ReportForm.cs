@@ -179,8 +179,9 @@ namespace HeaderHero
                     // If the node's parent is the same as its child, and the node is the same as its grandparent, end the chain.
                     if (currentNode.Parent.Tag.ToString() == s && currentNode.Tag.ToString() == currentNode.Parent.Parent.Tag.ToString())
                     {
+                        TreeNode cycleNode = currentNode.Nodes.Add(Path.GetFileName(s));
+                        cycleNode.Nodes.Add("[Cycle detected]");
                         currentNode.Nodes.Add(" ");
-                        currentNode.Nodes.Add("[Cycle detected]");
                         currentNode = currentNode.Parent;
                         return currentNode.Tag.ToString();
                     }

@@ -83,11 +83,11 @@ namespace HeaderHero
             this.tabPages.Controls.Add(this.missingTab);
             this.tabPages.Controls.Add(this.treeTab);
             this.tabPages.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabPages.Location = new System.Drawing.Point(0, 28);
+            this.tabPages.Location = new System.Drawing.Point(0, 48);
             this.tabPages.Margin = new System.Windows.Forms.Padding(4);
             this.tabPages.Name = "tabPages";
             this.tabPages.SelectedIndex = 0;
-            this.tabPages.Size = new System.Drawing.Size(1232, 1175);
+            this.tabPages.Size = new System.Drawing.Size(1545, 1155);
             this.tabPages.TabIndex = 0;
             // 
             // reportTab
@@ -336,7 +336,7 @@ namespace HeaderHero
             this.treeTab.Controls.Add(this.treeView);
             this.treeTab.Location = new System.Drawing.Point(4, 25);
             this.treeTab.Name = "treeTab";
-            this.treeTab.Size = new System.Drawing.Size(1224, 1146);
+            this.treeTab.Size = new System.Drawing.Size(1537, 1126);
             this.treeTab.TabIndex = 4;
             this.treeTab.Text = "Tree View";
             this.treeTab.UseVisualStyleBackColor = true;
@@ -345,7 +345,7 @@ namespace HeaderHero
             // 
             this.LoadingLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.LoadingLabel.AutoSize = true;
-            this.LoadingLabel.Location = new System.Drawing.Point(536, 429);
+            this.LoadingLabel.Location = new System.Drawing.Point(536, 419);
             this.LoadingLabel.Name = "LoadingLabel";
             this.LoadingLabel.Size = new System.Drawing.Size(91, 16);
             this.LoadingLabel.TabIndex = 5;
@@ -356,7 +356,7 @@ namespace HeaderHero
             // 
             this.btnExpandAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExpandAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExpandAll.Location = new System.Drawing.Point(1090, 29);
+            this.btnExpandAll.Location = new System.Drawing.Point(1403, 29);
             this.btnExpandAll.Name = "btnExpandAll";
             this.btnExpandAll.Size = new System.Drawing.Size(98, 25);
             this.btnExpandAll.TabIndex = 4;
@@ -367,7 +367,7 @@ namespace HeaderHero
             // btnCreateTree
             // 
             this.btnCreateTree.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCreateTree.Location = new System.Drawing.Point(1088, -1);
+            this.btnCreateTree.Location = new System.Drawing.Point(1401, -1);
             this.btnCreateTree.Name = "btnCreateTree";
             this.btnCreateTree.Size = new System.Drawing.Size(100, 24);
             this.btnCreateTree.TabIndex = 3;
@@ -394,7 +394,7 @@ namespace HeaderHero
             | System.Windows.Forms.AnchorStyles.Right)));
             this.treeView.Location = new System.Drawing.Point(-4, 20);
             this.treeView.Name = "treeView";
-            this.treeView.Size = new System.Drawing.Size(1225, 1130);
+            this.treeView.Size = new System.Drawing.Size(1538, 1110);
             this.treeView.TabIndex = 1;
             // 
             // menuStrip1
@@ -404,7 +404,7 @@ namespace HeaderHero
             this.scanToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1232, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1545, 38);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -434,7 +434,7 @@ namespace HeaderHero
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1232, 1203);
+            this.ClientSize = new System.Drawing.Size(1236, 962);
             this.Controls.Add(this.tabPages);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
