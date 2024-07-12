@@ -291,9 +291,15 @@ namespace HeaderHero
             this.LoadingLabel.Visible = true;
             treeView.Visible = false;
             this.Update();
-            treeView.BeginUpdate();
-            makeTree(treeComboBox.SelectedValue.ToString());
-            treeView.EndUpdate();
+            foreach (string key in _project.Files.Keys)
+            {
+                if (key == treeComboBox.SelectedValue.ToString())
+                {
+                    treeView.BeginUpdate();
+                    makeTree(treeComboBox.SelectedValue.ToString());
+                    treeView.EndUpdate();
+                }
+            }
             this.LoadingLabel.Visible = false;
             treeView.Visible = true;
             this.Update();

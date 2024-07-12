@@ -31,6 +31,7 @@ namespace HeaderHero
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tabPages = new System.Windows.Forms.TabControl();
             this.reportTab = new System.Windows.Forms.TabPage();
             this.reportBrowser = new System.Windows.Forms.WebBrowser();
@@ -64,6 +65,9 @@ namespace HeaderHero
             this.scanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rescanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabPages.SuspendLayout();
             this.reportTab.SuspendLayout();
             this.includeTab.SuspendLayout();
@@ -73,6 +77,9 @@ namespace HeaderHero
             this.missingTab.SuspendLayout();
             this.treeTab.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).BeginInit();
             this.SuspendLayout();
             // 
             // tabPages
@@ -83,11 +90,11 @@ namespace HeaderHero
             this.tabPages.Controls.Add(this.missingTab);
             this.tabPages.Controls.Add(this.treeTab);
             this.tabPages.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabPages.Location = new System.Drawing.Point(0, 48);
+            this.tabPages.Location = new System.Drawing.Point(0, 28);
             this.tabPages.Margin = new System.Windows.Forms.Padding(4);
             this.tabPages.Name = "tabPages";
             this.tabPages.SelectedIndex = 0;
-            this.tabPages.Size = new System.Drawing.Size(1545, 1155);
+            this.tabPages.Size = new System.Drawing.Size(1233, 904);
             this.tabPages.TabIndex = 0;
             // 
             // reportTab
@@ -336,7 +343,7 @@ namespace HeaderHero
             this.treeTab.Controls.Add(this.treeView);
             this.treeTab.Location = new System.Drawing.Point(4, 25);
             this.treeTab.Name = "treeTab";
-            this.treeTab.Size = new System.Drawing.Size(1537, 1126);
+            this.treeTab.Size = new System.Drawing.Size(1225, 875);
             this.treeTab.TabIndex = 4;
             this.treeTab.Text = "Tree View";
             this.treeTab.UseVisualStyleBackColor = true;
@@ -345,7 +352,7 @@ namespace HeaderHero
             // 
             this.LoadingLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.LoadingLabel.AutoSize = true;
-            this.LoadingLabel.Location = new System.Drawing.Point(536, 419);
+            this.LoadingLabel.Location = new System.Drawing.Point(536, 293);
             this.LoadingLabel.Name = "LoadingLabel";
             this.LoadingLabel.Size = new System.Drawing.Size(91, 16);
             this.LoadingLabel.TabIndex = 5;
@@ -356,7 +363,7 @@ namespace HeaderHero
             // 
             this.btnExpandAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExpandAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExpandAll.Location = new System.Drawing.Point(1403, 29);
+            this.btnExpandAll.Location = new System.Drawing.Point(1091, 29);
             this.btnExpandAll.Name = "btnExpandAll";
             this.btnExpandAll.Size = new System.Drawing.Size(98, 25);
             this.btnExpandAll.TabIndex = 4;
@@ -367,7 +374,7 @@ namespace HeaderHero
             // btnCreateTree
             // 
             this.btnCreateTree.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCreateTree.Location = new System.Drawing.Point(1401, -1);
+            this.btnCreateTree.Location = new System.Drawing.Point(1089, -1);
             this.btnCreateTree.Name = "btnCreateTree";
             this.btnCreateTree.Size = new System.Drawing.Size(100, 24);
             this.btnCreateTree.TabIndex = 3;
@@ -394,7 +401,7 @@ namespace HeaderHero
             | System.Windows.Forms.AnchorStyles.Right)));
             this.treeView.Location = new System.Drawing.Point(-4, 20);
             this.treeView.Name = "treeView";
-            this.treeView.Size = new System.Drawing.Size(1538, 1110);
+            this.treeView.Size = new System.Drawing.Size(1226, 859);
             this.treeView.TabIndex = 1;
             // 
             // menuStrip1
@@ -404,7 +411,7 @@ namespace HeaderHero
             this.scanToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1545, 38);
+            this.menuStrip1.Size = new System.Drawing.Size(1233, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -430,11 +437,23 @@ namespace HeaderHero
             this.directorySearcher1.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
             this.directorySearcher1.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // errorProvider2
+            // 
+            this.errorProvider2.ContainerControl = this;
+            // 
+            // errorProvider3
+            // 
+            this.errorProvider3.ContainerControl = this;
+            // 
             // ReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1236, 962);
+            this.ClientSize = new System.Drawing.Size(1233, 932);
             this.Controls.Add(this.tabPages);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -454,6 +473,9 @@ namespace HeaderHero
             this.treeTab.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -494,5 +516,8 @@ namespace HeaderHero
         private Button btnExpandAll;
         private System.DirectoryServices.DirectorySearcher directorySearcher1;
         private Label LoadingLabel;
+        private ErrorProvider errorProvider1;
+        private ErrorProvider errorProvider2;
+        private ErrorProvider errorProvider3;
     }
 }
