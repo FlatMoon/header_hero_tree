@@ -291,14 +291,21 @@ namespace HeaderHero
             this.LoadingLabel.Visible = true;
             treeView.Visible = false;
             this.Update();
-            foreach (string key in _project.Files.Keys)
+            try
             {
-                if (key == treeComboBox.SelectedValue.ToString())
+                foreach (string key in _project.Files.Keys)
                 {
-                    treeView.BeginUpdate();
-                    makeTree(treeComboBox.SelectedValue.ToString());
-                    treeView.EndUpdate();
+                    if (key == treeComboBox.SelectedValue.ToString())
+                    {
+                        treeView.BeginUpdate();
+                        makeTree(treeComboBox.SelectedValue.ToString());
+                        treeView.EndUpdate();
+                    }
                 }
+            }
+            catch
+            {
+                Console.WriteLine("Invalid file path");
             }
             this.LoadingLabel.Visible = false;
             treeView.Visible = true;
