@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
+using System.Runtime.CompilerServices;
 //using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace HeaderHero
@@ -66,6 +67,7 @@ namespace HeaderHero
         }
         TreeNode currentNode = null;
 
+
         private void makeTree(string startingFile)
         {
             string nextFile = startingFile;
@@ -83,7 +85,25 @@ namespace HeaderHero
             {
                 nextFile = TreeInspect(nextFile);
             }
-            
+            removeEmpty(treeView.Nodes);
+
+            void removeEmpty(TreeNodeCollection nodes)
+            {
+                foreach (TreeNode child in nodes)
+                {
+                    try
+                    {
+                        if (child.Text == " ")
+                        {
+                            child.Remove();
+                        }
+                        removeEmpty(child.Nodes);
+                    }
+                    catch
+                    {
+                    }
+                }
+            }
 
         } 
 
@@ -148,7 +168,6 @@ namespace HeaderHero
 
 
             // Start of algorithm
-            Console.WriteLine("inspecting " + file);
 
             // If there are possible child nodes and the chain has not already been created
             if (_project.Files[file].AbsoluteIncludes.Count > 0 && !endOfChain(currentNode))
@@ -161,6 +180,7 @@ namespace HeaderHero
                     if (currentNode.Parent.Tag.ToString() == s && currentNode.Tag.ToString() == currentNode.Parent.Parent.Tag.ToString())
                     {
                         currentNode.Nodes.Add(" ");
+                        currentNode.Nodes.Add("[Cycle detected]");
                         currentNode = currentNode.Parent;
                         return currentNode.Tag.ToString();
                     }
@@ -186,6 +206,7 @@ namespace HeaderHero
         }
         private void Inspect(string file)
         {
+            treeComboBox.Text = file;
             _inspecting = file;
             if (_history.Count == 0 || _history.Last() != file)
             {
@@ -263,18 +284,31 @@ namespace HeaderHero
                 Inspect(_history.Last());
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnCreateTree_Click(object sender, EventArgs e)
         {
+            this.LoadingLabel.BringToFront();
+            this.LoadingLabel.Visible = true;
+            treeView.Visible = false;
+            this.Update();
             treeView.BeginUpdate();
             makeTree(treeComboBox.SelectedValue.ToString());
             treeView.EndUpdate();
+            this.LoadingLabel.Visible = false;
+            treeView.Visible = true;
+            this.Update();
         }
-
-        private void button2_Click(object sender, EventArgs e)
+        private void btnExpandAll_Click(object sender, EventArgs e)
         {
+            this.LoadingLabel.BringToFront();
+            this.LoadingLabel.Visible = true;
+            treeView.Visible = false;
+            this.Update();
             treeView.BeginUpdate();
             treeView.ExpandAll();
             treeView.EndUpdate();
+            this.LoadingLabel.Visible = false;
+            treeView.Visible = true;
+            this.Update();
         }
     }
 }

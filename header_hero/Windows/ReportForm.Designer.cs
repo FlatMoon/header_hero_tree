@@ -55,13 +55,15 @@ namespace HeaderHero
             this.missingTab = new System.Windows.Forms.TabPage();
             this.missingFilesListView = new System.Windows.Forms.ListView();
             this.treeTab = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
+            this.LoadingLabel = new System.Windows.Forms.Label();
+            this.btnExpandAll = new System.Windows.Forms.Button();
+            this.btnCreateTree = new System.Windows.Forms.Button();
             this.treeComboBox = new System.Windows.Forms.ComboBox();
             this.treeView = new System.Windows.Forms.TreeView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.scanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rescanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ExpandButton = new System.Windows.Forms.Button();
+            this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
             this.tabPages.SuspendLayout();
             this.reportTab.SuspendLayout();
             this.includeTab.SuspendLayout();
@@ -95,7 +97,7 @@ namespace HeaderHero
             this.reportTab.Margin = new System.Windows.Forms.Padding(4);
             this.reportTab.Name = "reportTab";
             this.reportTab.Padding = new System.Windows.Forms.Padding(4);
-            this.reportTab.Size = new System.Drawing.Size(973, 876);
+            this.reportTab.Size = new System.Drawing.Size(1224, 1146);
             this.reportTab.TabIndex = 0;
             this.reportTab.Text = "Report";
             this.reportTab.UseVisualStyleBackColor = true;
@@ -107,7 +109,7 @@ namespace HeaderHero
             this.reportBrowser.Margin = new System.Windows.Forms.Padding(4);
             this.reportBrowser.MinimumSize = new System.Drawing.Size(27, 25);
             this.reportBrowser.Name = "reportBrowser";
-            this.reportBrowser.Size = new System.Drawing.Size(965, 868);
+            this.reportBrowser.Size = new System.Drawing.Size(1216, 1138);
             this.reportBrowser.TabIndex = 0;
             // 
             // includeTab
@@ -117,7 +119,7 @@ namespace HeaderHero
             this.includeTab.Margin = new System.Windows.Forms.Padding(4);
             this.includeTab.Name = "includeTab";
             this.includeTab.Padding = new System.Windows.Forms.Padding(4);
-            this.includeTab.Size = new System.Drawing.Size(973, 876);
+            this.includeTab.Size = new System.Drawing.Size(1224, 1146);
             this.includeTab.TabIndex = 3;
             this.includeTab.Text = "Includes";
             this.includeTab.UseVisualStyleBackColor = true;
@@ -141,7 +143,7 @@ namespace HeaderHero
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(965, 868);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1216, 1138);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // includesListView
@@ -152,10 +154,10 @@ namespace HeaderHero
             this.IncludesLines});
             this.includesListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.includesListView.HideSelection = false;
-            this.includesListView.Location = new System.Drawing.Point(646, 29);
+            this.includesListView.Location = new System.Drawing.Point(814, 29);
             this.includesListView.Margin = new System.Windows.Forms.Padding(4);
             this.includesListView.Name = "includesListView";
-            this.includesListView.Size = new System.Drawing.Size(315, 835);
+            this.includesListView.Size = new System.Drawing.Size(398, 1105);
             this.includesListView.TabIndex = 5;
             this.includesListView.UseCompatibleStateImageBehavior = false;
             this.includesListView.View = System.Windows.Forms.View.Details;
@@ -178,7 +180,7 @@ namespace HeaderHero
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(646, 0);
+            this.label3.Location = new System.Drawing.Point(814, 0);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(60, 16);
@@ -206,7 +208,7 @@ namespace HeaderHero
             this.includedByListView.Location = new System.Drawing.Point(4, 29);
             this.includedByListView.Margin = new System.Windows.Forms.Padding(4);
             this.includedByListView.Name = "includedByListView";
-            this.includedByListView.Size = new System.Drawing.Size(313, 835);
+            this.includedByListView.Size = new System.Drawing.Size(397, 1105);
             this.includedByListView.TabIndex = 3;
             this.includedByListView.UseCompatibleStateImageBehavior = false;
             this.includedByListView.View = System.Windows.Forms.View.Details;
@@ -235,12 +237,12 @@ namespace HeaderHero
             this.fileColHeader.Controls.Add(this.label2, 0, 0);
             this.fileColHeader.Controls.Add(this.btnBack, 1, 0);
             this.fileColHeader.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fileColHeader.Location = new System.Drawing.Point(321, 0);
+            this.fileColHeader.Location = new System.Drawing.Point(405, 0);
             this.fileColHeader.Margin = new System.Windows.Forms.Padding(0);
             this.fileColHeader.Name = "fileColHeader";
             this.fileColHeader.RowCount = 1;
             this.fileColHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.fileColHeader.Size = new System.Drawing.Size(321, 25);
+            this.fileColHeader.Size = new System.Drawing.Size(405, 25);
             this.fileColHeader.TabIndex = 6;
             // 
             // label2
@@ -255,7 +257,7 @@ namespace HeaderHero
             // btnBack
             // 
             this.btnBack.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnBack.Location = new System.Drawing.Point(285, 0);
+            this.btnBack.Location = new System.Drawing.Point(369, 0);
             this.btnBack.Margin = new System.Windows.Forms.Padding(0);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(36, 25);
@@ -268,12 +270,12 @@ namespace HeaderHero
             // 
             this.fileListText.BackColor = System.Drawing.SystemColors.Window;
             this.fileListText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fileListText.Location = new System.Drawing.Point(325, 29);
+            this.fileListText.Location = new System.Drawing.Point(409, 29);
             this.fileListText.Margin = new System.Windows.Forms.Padding(4);
             this.fileListText.Multiline = true;
             this.fileListText.Name = "fileListText";
             this.fileListText.ReadOnly = true;
-            this.fileListText.Size = new System.Drawing.Size(313, 835);
+            this.fileListText.Size = new System.Drawing.Size(397, 1105);
             this.fileListText.TabIndex = 7;
             // 
             // errorsTab
@@ -283,7 +285,7 @@ namespace HeaderHero
             this.errorsTab.Margin = new System.Windows.Forms.Padding(4);
             this.errorsTab.Name = "errorsTab";
             this.errorsTab.Padding = new System.Windows.Forms.Padding(4);
-            this.errorsTab.Size = new System.Drawing.Size(973, 876);
+            this.errorsTab.Size = new System.Drawing.Size(1224, 1146);
             this.errorsTab.TabIndex = 1;
             this.errorsTab.Text = "Errors";
             this.errorsTab.UseVisualStyleBackColor = true;
@@ -295,7 +297,7 @@ namespace HeaderHero
             this.errorsListView.Location = new System.Drawing.Point(4, 4);
             this.errorsListView.Margin = new System.Windows.Forms.Padding(4);
             this.errorsListView.Name = "errorsListView";
-            this.errorsListView.Size = new System.Drawing.Size(965, 868);
+            this.errorsListView.Size = new System.Drawing.Size(1216, 1138);
             this.errorsListView.TabIndex = 0;
             this.errorsListView.UseCompatibleStateImageBehavior = false;
             this.errorsListView.View = System.Windows.Forms.View.List;
@@ -307,7 +309,7 @@ namespace HeaderHero
             this.missingTab.Margin = new System.Windows.Forms.Padding(4);
             this.missingTab.Name = "missingTab";
             this.missingTab.Padding = new System.Windows.Forms.Padding(4);
-            this.missingTab.Size = new System.Drawing.Size(973, 876);
+            this.missingTab.Size = new System.Drawing.Size(1224, 1146);
             this.missingTab.TabIndex = 2;
             this.missingTab.Text = "Missing Files";
             this.missingTab.UseVisualStyleBackColor = true;
@@ -320,15 +322,16 @@ namespace HeaderHero
             this.missingFilesListView.Margin = new System.Windows.Forms.Padding(4);
             this.missingFilesListView.Name = "missingFilesListView";
             this.missingFilesListView.ShowItemToolTips = true;
-            this.missingFilesListView.Size = new System.Drawing.Size(965, 868);
+            this.missingFilesListView.Size = new System.Drawing.Size(1216, 1138);
             this.missingFilesListView.TabIndex = 1;
             this.missingFilesListView.UseCompatibleStateImageBehavior = false;
             this.missingFilesListView.View = System.Windows.Forms.View.List;
             // 
             // treeTab
             // 
-            this.treeTab.Controls.Add(this.ExpandButton);
-            this.treeTab.Controls.Add(this.button1);
+            this.treeTab.Controls.Add(this.LoadingLabel);
+            this.treeTab.Controls.Add(this.btnExpandAll);
+            this.treeTab.Controls.Add(this.btnCreateTree);
             this.treeTab.Controls.Add(this.treeComboBox);
             this.treeTab.Controls.Add(this.treeView);
             this.treeTab.Location = new System.Drawing.Point(4, 25);
@@ -338,16 +341,39 @@ namespace HeaderHero
             this.treeTab.Text = "Tree View";
             this.treeTab.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // LoadingLabel
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(1123, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 24);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Create tree";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.LoadingLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.LoadingLabel.AutoSize = true;
+            this.LoadingLabel.Location = new System.Drawing.Point(536, 429);
+            this.LoadingLabel.Name = "LoadingLabel";
+            this.LoadingLabel.Size = new System.Drawing.Size(91, 16);
+            this.LoadingLabel.TabIndex = 5;
+            this.LoadingLabel.Text = "Loading tree...";
+            this.LoadingLabel.Visible = false;
+            // 
+            // btnExpandAll
+            // 
+            this.btnExpandAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExpandAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExpandAll.Location = new System.Drawing.Point(1090, 29);
+            this.btnExpandAll.Name = "btnExpandAll";
+            this.btnExpandAll.Size = new System.Drawing.Size(98, 25);
+            this.btnExpandAll.TabIndex = 4;
+            this.btnExpandAll.Text = "Expand All";
+            this.btnExpandAll.UseVisualStyleBackColor = true;
+            this.btnExpandAll.Click += new System.EventHandler(this.btnExpandAll_Click);
+            // 
+            // btnCreateTree
+            // 
+            this.btnCreateTree.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCreateTree.Location = new System.Drawing.Point(1088, -1);
+            this.btnCreateTree.Name = "btnCreateTree";
+            this.btnCreateTree.Size = new System.Drawing.Size(100, 24);
+            this.btnCreateTree.TabIndex = 3;
+            this.btnCreateTree.Text = "Create tree";
+            this.btnCreateTree.UseVisualStyleBackColor = true;
+            this.btnCreateTree.Click += new System.EventHandler(this.btnCreateTree_Click);
             // 
             // treeComboBox
             // 
@@ -357,7 +383,7 @@ namespace HeaderHero
             this.treeComboBox.FormattingEnabled = true;
             this.treeComboBox.Location = new System.Drawing.Point(0, 0);
             this.treeComboBox.Name = "treeComboBox";
-            this.treeComboBox.Size = new System.Drawing.Size(1117, 24);
+            this.treeComboBox.Size = new System.Drawing.Size(1082, 24);
             this.treeComboBox.TabIndex = 2;
             this.treeComboBox.ValueMember = "ID";
             // 
@@ -398,17 +424,11 @@ namespace HeaderHero
             this.rescanToolStripMenuItem.Text = "Rescan";
             this.rescanToolStripMenuItem.Click += new System.EventHandler(this.rescanToolStripMenuItem_Click);
             // 
-            // ExpandButton
+            // directorySearcher1
             // 
-            this.ExpandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ExpandButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExpandButton.Location = new System.Drawing.Point(1123, 30);
-            this.ExpandButton.Name = "ExpandButton";
-            this.ExpandButton.Size = new System.Drawing.Size(98, 25);
-            this.ExpandButton.TabIndex = 4;
-            this.ExpandButton.Text = "Expand All";
-            this.ExpandButton.UseVisualStyleBackColor = true;
-            this.ExpandButton.Click += new System.EventHandler(this.button2_Click);
+            this.directorySearcher1.ClientTimeout = System.TimeSpan.Parse("-00:00:01");
+            this.directorySearcher1.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
+            this.directorySearcher1.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
             // 
             // ReportForm
             // 
@@ -431,6 +451,7 @@ namespace HeaderHero
             this.errorsTab.ResumeLayout(false);
             this.missingTab.ResumeLayout(false);
             this.treeTab.ResumeLayout(false);
+            this.treeTab.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -469,7 +490,9 @@ namespace HeaderHero
         private System.Windows.Forms.TabPage treeTab;
         private System.Windows.Forms.TreeView treeView;
         private System.Windows.Forms.ComboBox treeComboBox;
-        private Button button1;
-        private Button ExpandButton;
+        private Button btnCreateTree;
+        private Button btnExpandAll;
+        private System.DirectoryServices.DirectorySearcher directorySearcher1;
+        private Label LoadingLabel;
     }
 }
