@@ -10,6 +10,7 @@ namespace HeaderHero
 {
     public partial class ReportForm : Form
     {
+        public TreeNode currentNode;
         Data.Project _project;
         Parser.Scanner _scanner;
         Parser.Analytics _analytics;
@@ -63,11 +64,10 @@ namespace HeaderHero
             Console.WriteLine(dataSource);
             treeComboBox.DataSource = dataSource;
         }
-        TreeNode currentNode = null;
-
 
         private void makeTree(string startingFile)
         {
+
             treeView.Nodes.Clear();
             TreeNode rootNode = treeView.Nodes.Add("Root");
             rootNode.Tag = "RootTag";
