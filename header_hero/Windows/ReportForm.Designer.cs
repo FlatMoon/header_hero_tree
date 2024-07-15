@@ -90,21 +90,19 @@ namespace HeaderHero
             this.tabPages.Controls.Add(this.missingTab);
             this.tabPages.Controls.Add(this.treeTab);
             this.tabPages.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabPages.Location = new System.Drawing.Point(0, 28);
-            this.tabPages.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPages.Location = new System.Drawing.Point(0, 24);
             this.tabPages.Name = "tabPages";
             this.tabPages.SelectedIndex = 0;
-            this.tabPages.Size = new System.Drawing.Size(1233, 904);
+            this.tabPages.Size = new System.Drawing.Size(925, 733);
             this.tabPages.TabIndex = 0;
             // 
             // reportTab
             // 
             this.reportTab.Controls.Add(this.reportBrowser);
-            this.reportTab.Location = new System.Drawing.Point(4, 25);
-            this.reportTab.Margin = new System.Windows.Forms.Padding(4);
+            this.reportTab.Location = new System.Drawing.Point(4, 22);
             this.reportTab.Name = "reportTab";
-            this.reportTab.Padding = new System.Windows.Forms.Padding(4);
-            this.reportTab.Size = new System.Drawing.Size(1224, 1146);
+            this.reportTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.reportTab.Size = new System.Drawing.Size(917, 707);
             this.reportTab.TabIndex = 0;
             this.reportTab.Text = "Report";
             this.reportTab.UseVisualStyleBackColor = true;
@@ -112,21 +110,20 @@ namespace HeaderHero
             // reportBrowser
             // 
             this.reportBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.reportBrowser.Location = new System.Drawing.Point(4, 4);
-            this.reportBrowser.Margin = new System.Windows.Forms.Padding(4);
-            this.reportBrowser.MinimumSize = new System.Drawing.Size(27, 25);
+            this.reportBrowser.Location = new System.Drawing.Point(3, 3);
+            this.reportBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.reportBrowser.Name = "reportBrowser";
-            this.reportBrowser.Size = new System.Drawing.Size(1216, 1138);
+            this.reportBrowser.Size = new System.Drawing.Size(911, 701);
             this.reportBrowser.TabIndex = 0;
+            this.reportBrowser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.reportBrowser_DocumentCompleted);
             // 
             // includeTab
             // 
             this.includeTab.Controls.Add(this.tableLayoutPanel1);
-            this.includeTab.Location = new System.Drawing.Point(4, 25);
-            this.includeTab.Margin = new System.Windows.Forms.Padding(4);
+            this.includeTab.Location = new System.Drawing.Point(4, 22);
             this.includeTab.Name = "includeTab";
-            this.includeTab.Padding = new System.Windows.Forms.Padding(4);
-            this.includeTab.Size = new System.Drawing.Size(1224, 1146);
+            this.includeTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.includeTab.Size = new System.Drawing.Size(917, 708);
             this.includeTab.TabIndex = 3;
             this.includeTab.Text = "Includes";
             this.includeTab.UseVisualStyleBackColor = true;
@@ -144,13 +141,12 @@ namespace HeaderHero
             this.tableLayoutPanel1.Controls.Add(this.fileColHeader, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.fileListText, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(4, 4);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1216, 1138);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(911, 702);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // includesListView
@@ -161,10 +157,9 @@ namespace HeaderHero
             this.IncludesLines});
             this.includesListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.includesListView.HideSelection = false;
-            this.includesListView.Location = new System.Drawing.Point(814, 29);
-            this.includesListView.Margin = new System.Windows.Forms.Padding(4);
+            this.includesListView.Location = new System.Drawing.Point(609, 23);
             this.includesListView.Name = "includesListView";
-            this.includesListView.Size = new System.Drawing.Size(398, 1105);
+            this.includesListView.Size = new System.Drawing.Size(299, 676);
             this.includesListView.TabIndex = 5;
             this.includesListView.UseCompatibleStateImageBehavior = false;
             this.includesListView.View = System.Windows.Forms.View.Details;
@@ -187,20 +182,18 @@ namespace HeaderHero
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(814, 0);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(609, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 16);
+            this.label3.Size = new System.Drawing.Size(50, 13);
             this.label3.TabIndex = 2;
             this.label3.Text = "Includes:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 16);
+            this.label1.Size = new System.Drawing.Size(65, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Included by:";
             // 
@@ -212,10 +205,9 @@ namespace HeaderHero
             this.ByLines});
             this.includedByListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.includedByListView.HideSelection = false;
-            this.includedByListView.Location = new System.Drawing.Point(4, 29);
-            this.includedByListView.Margin = new System.Windows.Forms.Padding(4);
+            this.includedByListView.Location = new System.Drawing.Point(3, 23);
             this.includedByListView.Name = "includedByListView";
-            this.includedByListView.Size = new System.Drawing.Size(397, 1105);
+            this.includedByListView.Size = new System.Drawing.Size(297, 676);
             this.includedByListView.TabIndex = 3;
             this.includedByListView.UseCompatibleStateImageBehavior = false;
             this.includedByListView.View = System.Windows.Forms.View.Details;
@@ -239,35 +231,36 @@ namespace HeaderHero
             // 
             this.fileColHeader.ColumnCount = 2;
             this.fileColHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.fileColHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.fileColHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 18F));
+            this.fileColHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.fileColHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 14F));
             this.fileColHeader.Controls.Add(this.label2, 0, 0);
             this.fileColHeader.Controls.Add(this.btnBack, 1, 0);
             this.fileColHeader.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fileColHeader.Location = new System.Drawing.Point(405, 0);
+            this.fileColHeader.Location = new System.Drawing.Point(303, 0);
             this.fileColHeader.Margin = new System.Windows.Forms.Padding(0);
             this.fileColHeader.Name = "fileColHeader";
             this.fileColHeader.RowCount = 1;
             this.fileColHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.fileColHeader.Size = new System.Drawing.Size(405, 25);
+            this.fileColHeader.Size = new System.Drawing.Size(303, 20);
             this.fileColHeader.TabIndex = 6;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 0);
+            this.label2.Location = new System.Drawing.Point(2, 0);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(32, 16);
+            this.label2.Size = new System.Drawing.Size(26, 13);
             this.label2.TabIndex = 0;
             this.label2.Text = "File:";
             // 
             // btnBack
             // 
             this.btnBack.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnBack.Location = new System.Drawing.Point(369, 0);
+            this.btnBack.Location = new System.Drawing.Point(276, 0);
             this.btnBack.Margin = new System.Windows.Forms.Padding(0);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(36, 25);
+            this.btnBack.Size = new System.Drawing.Size(27, 20);
             this.btnBack.TabIndex = 1;
             this.btnBack.Text = "<";
             this.btnBack.UseVisualStyleBackColor = true;
@@ -277,22 +270,20 @@ namespace HeaderHero
             // 
             this.fileListText.BackColor = System.Drawing.SystemColors.Window;
             this.fileListText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fileListText.Location = new System.Drawing.Point(409, 29);
-            this.fileListText.Margin = new System.Windows.Forms.Padding(4);
+            this.fileListText.Location = new System.Drawing.Point(306, 23);
             this.fileListText.Multiline = true;
             this.fileListText.Name = "fileListText";
             this.fileListText.ReadOnly = true;
-            this.fileListText.Size = new System.Drawing.Size(397, 1105);
+            this.fileListText.Size = new System.Drawing.Size(297, 676);
             this.fileListText.TabIndex = 7;
             // 
             // errorsTab
             // 
             this.errorsTab.Controls.Add(this.errorsListView);
-            this.errorsTab.Location = new System.Drawing.Point(4, 25);
-            this.errorsTab.Margin = new System.Windows.Forms.Padding(4);
+            this.errorsTab.Location = new System.Drawing.Point(4, 22);
             this.errorsTab.Name = "errorsTab";
-            this.errorsTab.Padding = new System.Windows.Forms.Padding(4);
-            this.errorsTab.Size = new System.Drawing.Size(1224, 1146);
+            this.errorsTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.errorsTab.Size = new System.Drawing.Size(917, 708);
             this.errorsTab.TabIndex = 1;
             this.errorsTab.Text = "Errors";
             this.errorsTab.UseVisualStyleBackColor = true;
@@ -301,10 +292,9 @@ namespace HeaderHero
             // 
             this.errorsListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.errorsListView.HideSelection = false;
-            this.errorsListView.Location = new System.Drawing.Point(4, 4);
-            this.errorsListView.Margin = new System.Windows.Forms.Padding(4);
+            this.errorsListView.Location = new System.Drawing.Point(3, 3);
             this.errorsListView.Name = "errorsListView";
-            this.errorsListView.Size = new System.Drawing.Size(1216, 1138);
+            this.errorsListView.Size = new System.Drawing.Size(911, 702);
             this.errorsListView.TabIndex = 0;
             this.errorsListView.UseCompatibleStateImageBehavior = false;
             this.errorsListView.View = System.Windows.Forms.View.List;
@@ -312,11 +302,10 @@ namespace HeaderHero
             // missingTab
             // 
             this.missingTab.Controls.Add(this.missingFilesListView);
-            this.missingTab.Location = new System.Drawing.Point(4, 25);
-            this.missingTab.Margin = new System.Windows.Forms.Padding(4);
+            this.missingTab.Location = new System.Drawing.Point(4, 22);
             this.missingTab.Name = "missingTab";
-            this.missingTab.Padding = new System.Windows.Forms.Padding(4);
-            this.missingTab.Size = new System.Drawing.Size(1224, 1146);
+            this.missingTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.missingTab.Size = new System.Drawing.Size(917, 708);
             this.missingTab.TabIndex = 2;
             this.missingTab.Text = "Missing Files";
             this.missingTab.UseVisualStyleBackColor = true;
@@ -325,11 +314,10 @@ namespace HeaderHero
             // 
             this.missingFilesListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.missingFilesListView.HideSelection = false;
-            this.missingFilesListView.Location = new System.Drawing.Point(4, 4);
-            this.missingFilesListView.Margin = new System.Windows.Forms.Padding(4);
+            this.missingFilesListView.Location = new System.Drawing.Point(3, 3);
             this.missingFilesListView.Name = "missingFilesListView";
             this.missingFilesListView.ShowItemToolTips = true;
-            this.missingFilesListView.Size = new System.Drawing.Size(1216, 1138);
+            this.missingFilesListView.Size = new System.Drawing.Size(911, 702);
             this.missingFilesListView.TabIndex = 1;
             this.missingFilesListView.UseCompatibleStateImageBehavior = false;
             this.missingFilesListView.View = System.Windows.Forms.View.List;
@@ -341,9 +329,10 @@ namespace HeaderHero
             this.treeTab.Controls.Add(this.btnCreateTree);
             this.treeTab.Controls.Add(this.treeComboBox);
             this.treeTab.Controls.Add(this.treeView);
-            this.treeTab.Location = new System.Drawing.Point(4, 25);
+            this.treeTab.Location = new System.Drawing.Point(4, 22);
+            this.treeTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.treeTab.Name = "treeTab";
-            this.treeTab.Size = new System.Drawing.Size(1225, 875);
+            this.treeTab.Size = new System.Drawing.Size(917, 708);
             this.treeTab.TabIndex = 4;
             this.treeTab.Text = "Tree View";
             this.treeTab.UseVisualStyleBackColor = true;
@@ -352,9 +341,10 @@ namespace HeaderHero
             // 
             this.LoadingLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.LoadingLabel.AutoSize = true;
-            this.LoadingLabel.Location = new System.Drawing.Point(536, 293);
+            this.LoadingLabel.Location = new System.Drawing.Point(402, 238);
+            this.LoadingLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LoadingLabel.Name = "LoadingLabel";
-            this.LoadingLabel.Size = new System.Drawing.Size(91, 16);
+            this.LoadingLabel.Size = new System.Drawing.Size(75, 13);
             this.LoadingLabel.TabIndex = 5;
             this.LoadingLabel.Text = "Loading tree...";
             this.LoadingLabel.Visible = false;
@@ -363,9 +353,10 @@ namespace HeaderHero
             // 
             this.btnExpandAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExpandAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExpandAll.Location = new System.Drawing.Point(1091, 29);
+            this.btnExpandAll.Location = new System.Drawing.Point(818, 24);
+            this.btnExpandAll.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnExpandAll.Name = "btnExpandAll";
-            this.btnExpandAll.Size = new System.Drawing.Size(98, 25);
+            this.btnExpandAll.Size = new System.Drawing.Size(74, 20);
             this.btnExpandAll.TabIndex = 4;
             this.btnExpandAll.Text = "Expand All";
             this.btnExpandAll.UseVisualStyleBackColor = true;
@@ -374,9 +365,10 @@ namespace HeaderHero
             // btnCreateTree
             // 
             this.btnCreateTree.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCreateTree.Location = new System.Drawing.Point(1089, -1);
+            this.btnCreateTree.Location = new System.Drawing.Point(817, -1);
+            this.btnCreateTree.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCreateTree.Name = "btnCreateTree";
-            this.btnCreateTree.Size = new System.Drawing.Size(100, 24);
+            this.btnCreateTree.Size = new System.Drawing.Size(75, 20);
             this.btnCreateTree.TabIndex = 3;
             this.btnCreateTree.Text = "Create tree";
             this.btnCreateTree.UseVisualStyleBackColor = true;
@@ -389,8 +381,9 @@ namespace HeaderHero
             this.treeComboBox.DisplayMember = "VALUE";
             this.treeComboBox.FormattingEnabled = true;
             this.treeComboBox.Location = new System.Drawing.Point(0, 0);
+            this.treeComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.treeComboBox.Name = "treeComboBox";
-            this.treeComboBox.Size = new System.Drawing.Size(1082, 24);
+            this.treeComboBox.Size = new System.Drawing.Size(812, 21);
             this.treeComboBox.TabIndex = 2;
             this.treeComboBox.ValueMember = "ID";
             // 
@@ -399,9 +392,10 @@ namespace HeaderHero
             this.treeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.treeView.Location = new System.Drawing.Point(-4, 20);
+            this.treeView.Location = new System.Drawing.Point(-3, 16);
+            this.treeView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.treeView.Name = "treeView";
-            this.treeView.Size = new System.Drawing.Size(1226, 859);
+            this.treeView.Size = new System.Drawing.Size(920, 699);
             this.treeView.TabIndex = 1;
             // 
             // menuStrip1
@@ -411,7 +405,8 @@ namespace HeaderHero
             this.scanToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1233, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(925, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -420,14 +415,14 @@ namespace HeaderHero
             this.scanToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.rescanToolStripMenuItem});
             this.scanToolStripMenuItem.Name = "scanToolStripMenuItem";
-            this.scanToolStripMenuItem.Size = new System.Drawing.Size(54, 24);
+            this.scanToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.scanToolStripMenuItem.Text = "Scan";
             // 
             // rescanToolStripMenuItem
             // 
             this.rescanToolStripMenuItem.Name = "rescanToolStripMenuItem";
             this.rescanToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.rescanToolStripMenuItem.Size = new System.Drawing.Size(189, 26);
+            this.rescanToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.rescanToolStripMenuItem.Text = "Rescan";
             this.rescanToolStripMenuItem.Click += new System.EventHandler(this.rescanToolStripMenuItem_Click);
             // 
@@ -451,13 +446,12 @@ namespace HeaderHero
             // 
             // ReportForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1233, 932);
+            this.ClientSize = new System.Drawing.Size(925, 757);
             this.Controls.Add(this.tabPages);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ReportForm";
             this.Text = "Report";
             this.tabPages.ResumeLayout(false);

@@ -5,8 +5,6 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
-using System.Runtime.CompilerServices;
-//using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace HeaderHero
 {
@@ -70,20 +68,17 @@ namespace HeaderHero
 
         private void makeTree(string startingFile)
         {
-            string nextFile = startingFile;
             treeView.Nodes.Clear();
-
-;
             TreeNode rootNode = treeView.Nodes.Add("Root");
             rootNode.Tag = "RootTag";
-            currentNode = treeView.Nodes[0].Nodes.Add(nextFile);
+            currentNode = treeView.Nodes[0].Nodes.Add(startingFile);
             currentNode.Tag = startingFile;
 ;
-            Inspect(nextFile);
+            Inspect(startingFile);
 
             while (currentNode.Tag.ToString() != "RootTag") 
             {
-                nextFile = TreeInspect(nextFile);
+                startingFile = TreeInspect(startingFile);
             }
             removeEmpty(treeView.Nodes);
 
@@ -91,17 +86,11 @@ namespace HeaderHero
             {
                 foreach (TreeNode child in nodes)
                 {
-                    try
+                    if (child.Text == " ")
                     {
-                        if (child.Text == " ")
-                        {
-                            child.Remove();
-                        }
-                        removeEmpty(child.Nodes);
+                        child.Remove();
                     }
-                    catch
-                    {
-                    }
+                    removeEmpty(child.Nodes);
                 }
             }
 
@@ -323,6 +312,11 @@ namespace HeaderHero
             this.LoadingLabel.Visible = false;
             treeView.Visible = true;
             this.Update();
+        }
+
+        private void reportBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+
         }
     }
 }

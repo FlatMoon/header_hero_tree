@@ -59,10 +59,15 @@ namespace HeaderHero
         private void Poll(object sender, EventArgs e)
         {
             progressBar.Maximum = _feedback.Count;
-            progressBar.Value = _feedback.Item%2856;
+            progressBar.Value = _feedback.Item;
             progressReportLabel.Text = String.Format("{0}/{1}", _feedback.Item, _feedback.Count);
             Text = _feedback.Title;
             messageLabel.Text = _feedback.Message;
+        }
+
+        private void ProgressDialog_Load(object sender, EventArgs e)
+        {
+
         }
     }
 
