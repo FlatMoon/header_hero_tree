@@ -192,6 +192,7 @@ namespace HeaderHero
             scanToolStripMenuItem1_Click(sender, e);
         }
 
+
         #endregion
     }
 }

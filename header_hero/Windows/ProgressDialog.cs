@@ -64,6 +64,11 @@ namespace HeaderHero
             Text = _feedback.Title;
             messageLabel.Text = _feedback.Message;
         }
+
+        private void ProgressDialog_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public class ProgressFeedback
